@@ -1,0 +1,21 @@
+.link_container {
+  display: flex;
+}
+
+.link_container a {
+  background-color: var(--primary-color) !important;
+  color: #fff;
+  text-decoration: none;
+  margin: 0 auto;
+  padding: 12px 32px;
+  border: none;
+  border-radius: 9px;
+  transition: 0.4s;
+  text-align: center;
+  display: inline-block;
+  font-size: 20px;
+}
+
+.link_container a:hover {
+  color: #000;
+}

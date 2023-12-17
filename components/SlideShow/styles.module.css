@@ -1,0 +1,137 @@
+.slide_show_container {
+  /* width: 98.7vw; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.darken {
+  height: 40vw;
+  /* width: 98.7vw; */
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.slide_show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  text-align: center;
+  height: 40vw;
+  width: 100vw;
+  background-size: cover;
+  transition: background-image 1s;
+}
+
+.slideshow_h3 {
+  text-shadow: #c2fdf1;
+  color: #fff;
+  font-size: 45px;
+  font-weight: bold;
+  margin-bottom: 50px;
+ 
+}
+
+.gradient {
+  z-index: 112;
+}
+
+.arrow_left_container {
+  z-index: 112;
+  position: absolute;
+  top: 41%;
+  left: 4%;
+  background-color: #fff;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  transition: 0.4s;
+}
+
+.arrow_right_container {
+  z-index: 112;
+  position: absolute;
+  top: 41%;
+  right: 4%;
+  background-color: #fff;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  transition: 0.4s;
+}
+
+.arrow_left_container:hover {
+  background-color: #c2fdf1 !important;
+}
+
+.arrow_right_container:hover {
+  background-color: #c2fdf1 !important;
+}
+
+.arrow_left,
+.arrow_right {
+  margin-top: 11px;
+  font-size: 27px;
+  color: var(--primary-color);
+}
+
+@media (max-width: 1043px) {
+  .slide_show {
+    position: relative;
+  }
+
+  .slide_show h3 {
+    font-size: 1.5rem;
+  }
+
+  .arrow_left_container {
+    position: absolute !important;
+    top: 37% !important;
+    left: 4% !important;
+  }
+
+  .arrow_right_container {
+    position: absolute;
+    top: 37% !important;
+    right: 4% !important;
+  }
+  /* .slide_show_container {
+    width: 100vw;
+  }
+
+  .darken {
+    width: 100vw;
+  } */
+}
+
+@media (max-width: 600px) {
+  .arrow_left_container {
+    position: absolute !important;
+    top: 35% !important;
+    left: 4% !important;
+  }
+
+  .arrow_right_container {
+    position: absolute;
+    top: 35% !important;
+    right: 4% !important;
+  }
+
+  .slideshow_h3 {
+    margin: 0 !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .slideshow_h3 {
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+    font-size: 20px !important;
+  }
+
+  .gradient {
+    width: 150px;
+  }
+}

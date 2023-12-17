@@ -1,0 +1,41 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tableThead {
+  border-bottom: 1px solid gray;
+}
+
+.table th,
+.table td {
+  padding: 8px;
+  text-align: left;
+}
+
+.tableRow {
+  background-color: #f8f9fa;
+}
+
+.tableBody .linkContainer {
+  background-color: var(--primary-color);
+  color: #fff;
+  text-decoration: none;
+  margin: 10px; 
+  padding: 8px 24px;
+  border: none;
+  border-radius: 9px;
+
+  text-align: center;
+  display: inline-block;
+}
+
+.link {
+  color: #fff !important;
+  text-decoration: none;
+  transition: 0.4s;
+}
+
+.linkContainer a:hover {
+  color: #000 !important;
+}

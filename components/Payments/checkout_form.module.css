@@ -1,0 +1,24 @@
+.form {
+  padding: 45px;
+}
+
+.email {
+  margin-bottom: 20px;
+}
+
+.payment_button {
+  background-color: var(--primary-color) !important;
+  color: #fff;
+  text-decoration: none;
+  margin: 20px auto;
+  padding: 8px 24px;
+  border: none;
+  border-radius: 9px;
+  transition: 0.4s;
+  text-align: center;
+  display: inline-block;
+}
+
+.payment_button:hover {
+  color: #000;
+}

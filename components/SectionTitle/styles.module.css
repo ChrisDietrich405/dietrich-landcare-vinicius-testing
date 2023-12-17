@@ -1,0 +1,19 @@
+/* .title {
+  width: 10px;
+  margin-bottom: 15px;
+  color: #80ab82;
+}
+
+@media (max-width: 768px) {
+  .title {
+    width: 200px;
+    margin-bottom: 15px;
+    color: blue;
+  }
+
+  @media (max-width: 420px) {
+    .title {
+      margin-bottom: 15px;
+    }
+  }
+} */

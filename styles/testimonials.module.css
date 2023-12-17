@@ -1,0 +1,141 @@
+.testimonial {
+  width: 90%;
+  margin: 1rem auto 0rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.quote {
+  text-align: left;
+  margin-top: 40px;
+  position: relative;
+}
+
+.testimonial_container {
+  width: 85%;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.testimonial_container img {
+  margin-top: 1rem;
+  height: 23rem;
+  width: 32rem;
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+.testimonial_container_client {
+  padding-top: 3rem;
+}
+
+.testimonial_container_client img {
+  margin: 1rem 1rem;
+  height: 130px;
+  width: 130px;
+  border-radius: 50% !important;
+}
+
+.title {
+  width: 40%;
+  margin: 2rem auto;
+  text-align: center;
+  padding: 10px;
+  border-bottom: 2px solid #000;
+}
+
+.testimonial_person {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.testimonial_person h3 {
+  font-weight: bold;
+}
+
+.link_container {
+  display: flex;
+}
+
+.testimonial a {
+  background-color: var(--primary-color) !important;
+  color: #fff;
+  text-decoration: none;
+  margin: 0 auto;
+  padding: 8px 24px;
+  border: none;
+  border-radius: 9px;
+  transition: 0.4s;
+  text-align: center;
+  display: inline-block;
+}
+
+.testimonial a:hover {
+  color: #000;
+}
+
+@media (max-width: 1043px) {
+  .testimonial_container p {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .testimonial_person {
+    max-width: 80%;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .testimonial_person {
+    max-width: 80%;
+    margin: 0 auto;
+  }
+
+  .testimonial_container p {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .testimonial_pic img {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width: 440px) {
+  .testimonial_container {
+    max-width: 100% !important;
+    width: 390px !important;
+  }
+
+  .testimonial_person h3 {
+    font-size: 20px;
+  }
+
+  .image {
+    width: 20px;
+  }
+
+  .testimonial_container_client {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .quote {
+    width: 100% !important;
+    display: flex;
+    justify-content: center;
+  }
+
+  .quote svg {
+    margin-bottom: 30px;
+  }
+
+  .testimonial_person {
+    margin-top: 15px;
+  }
+}
