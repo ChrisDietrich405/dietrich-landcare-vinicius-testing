@@ -32,7 +32,7 @@ export default class AddCustomer extends React.Component {
         toast.success("account successfully added");
         this.setState({ user: {} });
       }
-      Router.push(`/add-invoice/${response.data.profile_id}`);
+      Router.push(`/add-invoice/${response.data.user._id}`);
       return response;
     } catch (error) {
       toast.error(error.response.data.message);

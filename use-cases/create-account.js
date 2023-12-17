@@ -1,10 +1,9 @@
 import clientPromise from "../lib/mongodb";
 import bcrypt from "bcrypt";
 
-import { getSalt } from "../shared/utils";
+import { getSalt } from "../../shared/utils";
 
-export class AddCustomerUseCase {
-  // Business Logic
+export class CreateAccountUseCase {
   async execute({
     firstName,
     lastName,
@@ -14,8 +13,6 @@ export class AddCustomerUseCase {
     password,
   }) {
     const client = await clientPromise;
-
-    // repositories pattern
     const db = client.db("dietrich_landcare");
 
     const checkAccountForDuplicate = await db
@@ -26,19 +23,26 @@ export class AddCustomerUseCase {
       throw new Error("Duplicate account.");
     }
 
+    profile_id = 2;
+
     const salt = getSalt();
-    const user = {
+
+    let newPassword = bcrypt.hashSync(password, salt);
+
+    const newUser = {
       firstName,
       lastName,
       streetAddress,
       email,
-      password: bcrypt.hashSync(password, salt),
+      profile_id,
+      newPassword,
     };
 
-    const dbResponse = await db.collection("accounts").insertOne(user);
-    user._id = dbResponse.insertedId;
+    let newCustomer = await db.collection("accounts").insertOne({ newUser });
 
-    const { password: pass, ...userWithoutPassword } = user;
+    newUser.id = newCustomer.insertedId;
+
+    const { password: pass, ...userWithoutPassword } = newUser;
 
     return { user: userWithoutPassword };
   }

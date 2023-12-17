@@ -1,12 +1,12 @@
-import clientPromise from "../../lib/mongodb";
+import { ListCategoriesUseCase } from "../../use-cases/list-categories";
 
 export default async function handler(req, res) {
-  const client = await clientPromise;
-  const db = client.db("dietrich_landcare");
   switch (req.method) {
     case "GET":
       try {
-        const categories = await db.collection("categories").find({}).toArray();
+        const listCategoriesUseCase = new ListCategoriesUseCase();
+        const categories = await listCategoriesUseCase.execute();
+
         res.json({ status: 200, data: categories });
         break;
       } catch (error) {
