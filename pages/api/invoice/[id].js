@@ -1,6 +1,7 @@
 import { jwtChecker } from "../../../lib/auth-checker";
 import clientPromise from "../../../lib/mongodb";
-import { ObjectId } from "mongodb";
+import { GetInvoiceUseCase } from "../../../use-cases/get-invoice";
+
 
 export default async function handler(req, res) {
   const client = await clientPromise;
@@ -11,13 +12,14 @@ export default async function handler(req, res) {
       if (!decodedToken) {
         return res.status(401).json({ status: 401, message: "unauthorized" });
       }
-      const invoice = await db
-        .collection("invoices")
-        .findOne({ _id: ObjectId(req.query.id) });
-      if (invoice && decodedToken._id !== invoice.account_id) {
-        return res.status(401).json({ status: 401, message: "unauthorized" });
-      }
-      return res.status(200).json(invoice);
+
+      const getInvoiceUseCase = new GetInvoiceUseCase();
+      const invoice = await getInvoiceUseCase.execute(
+        req.query.id,
+        decodedToken._id
+      );
+
+      res.json({ status: 200, data: invoice });
 
     case "PUT":
       const { paymentId } = req.body;
