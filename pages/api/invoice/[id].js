@@ -1,7 +1,7 @@
 import { jwtChecker } from "../../../lib/auth-checker";
 import clientPromise from "../../../lib/mongodb";
 import { GetInvoiceUseCase } from "../../../use-cases/get-invoice";
-
+import { HandlePaymentInvoiceUseCase } from "../../../use-cases/handle-payment-invoice";
 
 export default async function handler(req, res) {
   const client = await clientPromise;
@@ -13,28 +13,26 @@ export default async function handler(req, res) {
         return res.status(401).json({ status: 401, message: "unauthorized" });
       }
 
-      const getInvoiceUseCase = new GetInvoiceUseCase();
-      const invoice = await getInvoiceUseCase.execute(
-        req.query.id,
-        decodedToken._id
-      );
+      try {
+        const getInvoiceUseCase = new GetInvoiceUseCase();
+        const invoice = await getInvoiceUseCase.execute(
+          req.query.id,
+          decodedToken._id
+        );
 
-      res.json({ status: 200, data: invoice });
+        res.json({ status: 200, data: invoice });
+      } catch (error) {
+        res.status(500).json({message: "Server failed"})
+      }
 
     case "PUT":
       const { paymentId } = req.body;
-      const collection = db.collection("invoices");
-      const filter = { _id: ObjectId(req.query.id) };
+      const queryId = req.query.id;
 
-      const update = {
-        $set: {
-          payment_id: paymentId,
-        },
-      };
+      const handlePaymentUseCase = new HandlePaymentInvoiceUseCase();
 
       try {
-        await collection.updateOne(filter, update);
-        return res.json({ id: req.query.id, paymentId });
+        await handlePaymentUseCase.execute(paymentId, queryId);
       } catch (err) {
         console.error("Error updating document:", err);
         throw err;

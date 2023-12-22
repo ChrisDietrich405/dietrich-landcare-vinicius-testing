@@ -10,7 +10,7 @@ export class GetInvoiceUseCase {
       .collection("invoices")
       .findOne({ _id: ObjectId(invoiceId) });
     if (invoice && userAccountId !== invoice.account_id) {
-      throw new Error("you suck");
+      throw new Error("error");
     }
     return invoice;
   }

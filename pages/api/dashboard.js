@@ -20,7 +20,9 @@ export default async function handler(req, res) {
       const accounts = await db.collection("accounts").find({}).toArray();
 
       invoices = invoices.map((invoice) => {
-        invoice.account = accounts.find((account) => account._id.equals(ObjectId(invoice.account_id)));
+        invoice.account = accounts.find(
+          (account) => account._id === ObjectId(invoice.account_id)
+        );
         return invoice;
       });
 

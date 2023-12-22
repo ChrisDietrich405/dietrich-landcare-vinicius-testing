@@ -2,7 +2,7 @@ import React from "react";
 import MainPage from "../components/Dashboard/mainpage";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import { api } from './api/api'
+import { api } from "./api/api";
 
 import CheckoutForm from "../components/Payments/CheckoutForm";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -18,23 +18,22 @@ export default function PayInvoice() {
   const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
-
-    let clientSecretFromApi = '';
+    let clientSecretFromApi = "";
     const query = new URLSearchParams(window.location.search);
     const id = query.get("id");
 
     const fetching = async () => {
       const response = await api.get(`/invoice/${id}`);
-      setInvoice(response.data);
+      setInvoice(response.data.data);
 
       const payment = await api.post(
         "/payment/create-payment-intent",
         {
           items: [
             {
-              id: response.data._id,
-              service: response.data.service,
-              amount: response.data.amount,
+              id: response.data.data._id,
+              service: response.data.data.service,
+              amount: response.data.data.amount,
             },
           ],
         },
@@ -47,9 +46,11 @@ export default function PayInvoice() {
 
       setLoading(false);
 
-      if (typeof payment.data.clientSecret == 'undefined') {
+      if (typeof payment.data.clientSecret == "undefined") {
         return () => {
-          console.log('Operation stopped. Check if client secret from payment-intention keys are setted correctly.')
+          console.log(
+            "Operation stopped. Check if client secret from payment-intention keys are setted correctly."
+          );
         };
       }
 
@@ -61,7 +62,7 @@ export default function PayInvoice() {
           paymentId: clientSecretFromApi,
         });
       } catch (error) {
-        alert("error");
+        console.log(error);
       }
     };
 

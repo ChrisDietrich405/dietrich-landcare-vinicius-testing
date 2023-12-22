@@ -18,8 +18,10 @@ export default async function handler(req, res) {
       const { items } = req.body;
 
       if (!items || items.length <= 0) {
-        console.log('Error on item calculate function.');
-        return res.status(500).send({ error: true, message: "Error on getting items price." });
+        console.log("Error on item calculate function.");
+        return res
+          .status(500)
+          .send({ error: true, message: "Error on getting items price." });
       }
 
       // Create stripe env
@@ -37,7 +39,11 @@ export default async function handler(req, res) {
 
         return res.json({ clientSecret: paymentIntent.client_secret });
       } catch (err) {
-        return res.status(500).json({ err: true, message: "We’ve hit a snag. Try again in a few minutes." });
+        console.log("hellloooo", err);
+        return res.status(500).json({
+          err: true,
+          message: "We’ve hit a snag. Try again in a few minutes.",
+        });
       }
   }
 }
